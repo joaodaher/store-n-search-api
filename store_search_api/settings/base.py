@@ -4,11 +4,11 @@ import sys
 
 from envparse import env
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 
 # Paths
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
@@ -17,21 +17,6 @@ SECRET_KEY = env.str('SECRET_KEY', default='3.14159265359')
 DEBUG = env.bool('DEBUG', default=True)
 ALLOWED_HOSTS = []
 USE_X_FORWARDED_HOST = True
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
 
 
 # Logging
@@ -91,11 +76,7 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'utils.pagination.CustomPagePagination',
     'PAGE_SIZE': env.int('PAGE_SIZE', default=50),
-    'DEFAULT_FILTER_BACKENDS': (
-        'rest_framework_filters.backends.DjangoFilterBackend',
-    ),
 }
 
 
@@ -106,9 +87,7 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.messages',
     'django.contrib.sessions',
-    'django.contrib.admin',
     'django.contrib.staticfiles',
     'storages',
     'rest_framework',
@@ -120,7 +99,6 @@ WSGI_APPLICATION = 'wsgi.application'
 
 # Internationalization
 LANGUAGE_CODE = 'en'
-ADMIN_LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
@@ -128,7 +106,7 @@ USE_TZ = True
 
 
 # Database
-if 'SQL_HOST' not in os.environ:
+if 'SQL_HOST' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -169,7 +147,7 @@ else:
         }
     }
 REST_FRAMEWORK_EXTENSIONS = {
-    'DEFAULT_CACHE_RESPONSE_TIMEOUT': env.int('CACHE_TTL', 5 * 60),
+    'DEFAULT_CACHE_RESPONSE_TIMEOUT': env.int('CACHE_TTL', default=10),
     'DEFAULT_CACHE_ERRORS': False,
     'DEFAULT_CACHE_KEY_FUNC': 'utils.cache.cache_key_constructor',
 }
@@ -184,7 +162,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'utils.middleware.AdminLocaleURLMiddleware',
 )
 
 

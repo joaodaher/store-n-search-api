@@ -1,0 +1,7 @@
+[run]
+branch = True
+source = store_search_api
+omit = */tests/*, */wsgi.py, */manage.py, */settings/*
+
+[html]
+directory = html-coverage

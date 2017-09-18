@@ -1,0 +1,24 @@
+# API
+Django==1.11.5
+djangorestframework==3.6.4
+envparse==0.2.0
+raven==6.1.0
+
+
+# S3
+boto3==1.4.5
+django-storages==1.6.5
+
+
+# Database
+psycopg2==2.7.3
+
+
+# Cache
+django_redis==4.8.0
+drf-extensions==0.3.1
+
+
+# STG/PRD
+gunicorn==19.7.1
+newrelic==2.92.0.78

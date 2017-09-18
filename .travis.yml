@@ -1,0 +1,30 @@
+language: python
+
+python:
+  - "3.5"
+
+services:
+  - postgresql
+
+env:
+  global:
+    - TRAVIS=1
+    - DJANGO_SETTINGS_MODULE=settings.test
+    - REDIS_HOST=redis://localhost
+
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls flake8 pyyaml
+
+before_script:
+  - psql -c "CREATE DATABASE store_search_api;" -U postgres
+
+script:
+  - flake8
+  - coverage run recommendation_api/manage.py test store_search_api
+
+cache:
+  - pip
+
+after_success:
+  - coveralls

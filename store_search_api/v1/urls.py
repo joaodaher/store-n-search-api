@@ -2,8 +2,8 @@ from rest_framework.routers import DefaultRouter
 
 from v1 import views
 
-router = DefaultRouter(trailing_slash=False)
+router = DefaultRouter()
 
-router.register(r'samples', views.SampleViewSet)
+router.register(r'events', views.EventViewSet)
 
 urlpatterns = router.urls

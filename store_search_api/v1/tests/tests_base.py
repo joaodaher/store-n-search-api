@@ -1,21 +1,23 @@
+from django.utils import timezone
 from rest_framework.test import APITransactionTestCase
 
 from v1 import models
 
 
 class FieldFactoryMixin:
-    def make_sample(self, **kwargs):
+    def make_event(self, **kwargs):
         fields = {
-            'name': 'My Sample',
+            'name': 'buy',
+            'timestamp': timezone.now(),
         }
         fields.update(**kwargs)
         return fields
 
 
 class ModelFactoryMixin(FieldFactoryMixin):
-    def save_sample(self, **kwargs):
-        fields = super().make_sample(**kwargs)
-        model = models.Sample.objects.create(**fields)
+    def save_event(self, **kwargs):
+        fields = super().make_event(**kwargs)
+        model = models.Event.objects.create(**fields)
         return fields, model
 
 

@@ -1,7 +1,9 @@
+from django.core.management import call_command
 from django.utils import timezone
 from rest_framework.test import APITransactionTestCase
 
 from v1 import models
+from v1.tasks import create_event_mapping
 
 
 class FieldFactoryMixin:
@@ -22,6 +24,9 @@ class ModelFactoryMixin(FieldFactoryMixin):
 
 
 class BaseViewTest(ModelFactoryMixin, APITransactionTestCase):
+    def tearDown(self):
+        create_event_mapping()
+
     def assertIdInResponse(self, members, response):
         data = response.data
         try:

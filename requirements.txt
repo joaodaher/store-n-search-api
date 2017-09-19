@@ -12,6 +12,7 @@ django-storages==1.6.5
 
 # Database
 psycopg2==2.7.3
+elasticsearch==5.4.0
 
 
 # Cache

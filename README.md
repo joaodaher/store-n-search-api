@@ -1,18 +1,9 @@
 [![Build Status](https://travis-ci.com/edukorg/python-api-boilerplate.svg?token=xHKwbnsFqtqhKNyrz8Un&branch=master)](https://travis-ci.com/edukorg/python-api-boilerplate)
 [![Coverage Status](https://coveralls.io/repos/github/edukorg/python-api-boilerplate/badge.svg?t=VgLv9J)](https://coveralls.io/github/edukorg/python-api-boilerplate)
-[![python](https://img.shields.io/badge/python-3.5-blue.svg)](https://www.python.org/)
+[![python](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/)
 [![django](https://img.shields.io/badge/django-1.11-green.svg)](https://www.djangoproject.com/)
 # Python API Biolerplate
 API boilerplate for boosting creation of new Python APIs.
-
-## Clients
-
-[![pip](https://img.shields.io/badge/python-latest-blue.svg)]()
-
-
-## Documentation
-
-Visit the [API Docs]() for more information about each endpoint available.
 
 
 ## Setup
@@ -22,8 +13,8 @@ Visit the [API Docs]() for more information about each endpoint available.
   - install dependencies (`pip install -r requirements.txt`)
 
 ## Running the app
-  - sync your database (if needed): `manage.py migrate`
-  - fire up the server: `manage.py runserver`
+  - sync your database (if needed): `python manage.py migrate`
+  - fire up the server: `python manage.py runserver`
   
 
 ## Tests

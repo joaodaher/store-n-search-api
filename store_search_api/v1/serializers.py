@@ -2,10 +2,10 @@ from utils.serializers import BaseModelSerializer
 from v1 import models
 
 
-class SampleSerializer(BaseModelSerializer):
+class EventSerializer(BaseModelSerializer):
     class Meta(BaseModelSerializer.Meta):
-        model = models.Sample
+        model = models.Event
         fields = (
-            'id',
             'name',
+            'timestamp',
         )

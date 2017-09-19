@@ -1,4 +1,3 @@
-from django.core.management import call_command
 from django.utils import timezone
 from rest_framework.test import APITransactionTestCase
 

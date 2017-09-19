@@ -24,4 +24,4 @@ class V1Config(AppConfig):
     verbose_name = "Versão 1"
 
     def ready(self):
-        from v1 import signals
+        from v1 import signals    # noqa

@@ -6,4 +6,4 @@ from v1 import models
 
 @receiver(post_save, sender=models.Event, dispatch_uid="index_event")
 def index_event(sender, instance, **kwargs):
-     instance.index()
+    instance.index()

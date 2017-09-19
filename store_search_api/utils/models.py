@@ -70,4 +70,3 @@ class IndexableMixin:
                 body=body,
                 **kwargs
             )
-

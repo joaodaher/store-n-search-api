@@ -36,7 +36,7 @@ class EventViewTests(BaseViewTest):
         self.assertEqual(models.Event.objects.count(), 1)
 
     def test_search_event(self):
-        event_1, _ = self.save_event(id=42,name='signup')
+        event_1, _ = self.save_event(id=42, name='signup')
         event_2, _ = self.save_event(id=314, name='login')
         event_3, _ = self.save_event(id=112, name='logout')
 

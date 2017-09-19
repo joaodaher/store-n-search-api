@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.com/edukorg/python-api-boilerplate.svg?token=xHKwbnsFqtqhKNyrz8Un&branch=master)](https://travis-ci.com/edukorg/python-api-boilerplate)
-[![Coverage Status](https://coveralls.io/repos/github/edukorg/python-api-boilerplate/badge.svg?t=VgLv9J)](https://coveralls.io/github/edukorg/python-api-boilerplate)
+[![Build Status](https://travis-ci.org/joaodaher/store-n-search-api.svg?branch=master)](https://travis-ci.org/joaodaher/store-n-search-api)
+[![Coverage Status](https://coveralls.io/repos/github/joaodaher/store-n-search-api/badge.svg)](https://coveralls.io/github/joaodaher/store-n-search-api)
 [![python](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/)
 [![django](https://img.shields.io/badge/django-1.11-green.svg)](https://www.djangoproject.com/)
 # Python API Biolerplate

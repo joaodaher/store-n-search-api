@@ -106,15 +106,15 @@ USE_TZ = True
 
 
 # Database
-if 'SQL_HOST' in os.environ:
+if 'POSTGRES_HOST' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': env.str('SQL_NAME', default='store_search_api'),
-            'USER': env.str('SQL_USER', default='postgres'),
+            'NAME': env.str('POSTGRES_NAME', default='store_search_api'),
+            'USER': env.str('POSTGRES_USER', default='postgres'),
             'PASSWORD': env.str('SQL_PASSWORD', default=''),
-            'HOST': env.str('SQL_HOST', default='localhost'),
-            'PORT': env.str('SQL_PORT', default=''),
+            'HOST': env.str('POSTGRES_HOST', default='localhost'),
+            'PORT': env.str('POSTGRES_PORT', default=''),
             'CONN_MAX_AGE': 60,
         }
     }
@@ -126,6 +126,12 @@ else:
             'NAME': os.path.join(BASE_DIR, 'store_search_api.sqlite3'),
         }
     }
+
+
+# Elasticsearch
+ELASTICSEARCH = {
+    'HOST': env.str('ELASTICSEARCH_HOST', default='localhost'),
+}
 
 
 # Cache

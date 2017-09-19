@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+  # Redis
+  redis:
+    image: redis
+    hostname: redis
+    container_name: ss_redis
+    env_file: .env
+    expose:
+      - "6379"
+    volumes:
+      - ss_redis_data:/data
+
+  # Elasticsearch
+  elasticsearch:
+    image: elasticsearch
+    hostname: elasticsearch
+    container_name: ss_elasticsearch
+    environment:
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+    volumes:
+      - ss_es_data:/usr/share/elasticsearch/data
+    expose:
+      - "9200"
+      - "9300"
+
+  # Postgres
+  postgres:
+    image: postgres
+    hostname: postgres
+    container_name: ss_postgres
+    env_file: .env
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file: .env
+    volumes:
+      - ss_postgres_data:/var/lib/postgresql/data/
+
+  # Django web server
+  web:
+    build:
+      context: ../
+      dockerfile: docker/web/Dockerfile
+    hostname: web
+    container_name: ss_web
+    env_file: .env
+    command: su -c "chmod +x ../run_web.sh && bash ../run_web.sh"
+    volumes:
+      - ss_web_data:/usr/src/
+      - ss_log_data:/var/log/ss/
+    ports:
+      - "8000:8000"
+    links:
+      - redis
+      - elasticsearch
+      - postgres
+
+  nginx:
+    restart: always
+    container_name: ss_nginx
+    build:
+      context: ../
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ss_web_data:/usr/src/
+    links:
+      - web:web
+
+
+volumes:
+  ss_web_data:
+  ss_redis_data:
+  ss_es_data:
+  ss_postgres_data:
+  ss_log_data:

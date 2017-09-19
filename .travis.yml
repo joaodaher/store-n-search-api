@@ -1,0 +1,31 @@
+language: python
+
+python:
+  - "3.6"
+
+services:
+  - postgresql
+  - elasticsearch
+
+env:
+  global:
+    - TRAVIS=1
+    - DJANGO_SETTINGS_MODULE=settings.test
+
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls flake8 pyyaml
+
+before_script:
+  - psql -c "CREATE DATABASE store_search_api;" -U postgres
+  - sleep 10
+
+script:
+  - flake8
+  - coverage run store_search_api/manage.py test store_search_api
+
+cache:
+  - pip
+
+after_success:
+  - coveralls
